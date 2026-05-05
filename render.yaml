@@ -1,0 +1,23 @@
+services:
+  # Backend API Service
+  - type: web
+    name: coinbase-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://your-frontend-url.onrender.com
+    disk:
+      name: coinbase-disk
+      mountPath: /opt/render/project/data
+      sizeGB: 1
